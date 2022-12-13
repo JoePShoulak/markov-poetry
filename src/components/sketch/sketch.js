@@ -42,33 +42,24 @@ That makes calamity of so long life.`;
   p5.setup = () => {
     p5.noCanvas();
 
-    // const words = text.split(" ");
-    const words = text;
-    for (let i = 0; i <= words.length - order; i++) {
+    for (let i = 0; i <= text.length - order; i++) {
       let ngram = [];
 
-      for (let j = 0; j < order; j++) ngram.push(words[i + j]);
+      for (let j = 0; j < order; j++) ngram.push(text[i + j]);
 
       ngram = ngram.join("");
 
       if (!grams[ngram]) grams[ngram] = [];
 
-      const nextChar = words[i + order];
+      const nextChar = text[i + order];
       if (nextChar) grams[ngram].push(nextChar);
     }
 
-    output = p5.createP("Bad poetry");
+    output = p5.createP();
 
     button = p5.createButton("generate");
     button.mousePressed(() => markov(text));
-    // console.log(grams);
   };
-
-  // p5.draw = () => {
-  //   p5.background(20);
-
-  //   p5.circle(p5.frameCount % p5.width, p5.height / 2, 10);
-  // };
 };
 
 export default sketch;
